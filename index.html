@@ -1,0 +1,303 @@
+<html>
+	<head>
+		<style>
+		body{
+			margin: 0;
+			background: darkgreen;
+			text-align: center;
+		}
+			.road{
+				background: darkgray;
+				height: 600px;
+				width: 435px;
+				position: absolute;
+				overflow: hidden;
+				z-index: -1;
+				margin-left:-217.5px;
+				display: inline-block;
+			}
+			.right-line, .left-line, .double-solid-line{
+				position: absolute;
+				background: white;
+				height: 600px;
+				width: 5px;
+			}
+			.right-line{
+				left: 425px;
+			}
+			.left-line{
+				left: 5px;
+			}
+			.double-solid-line{
+				background: transparent;
+				border-left: 5px solid white;
+				border-right: 5px solid white;
+				left: 210px;
+			}
+			.midleft-line, .midright-line{
+				position: absolute;
+				height: 606px;
+				width: 0px;
+				top:-6px;
+				border-left: 2px dashed white;
+			}
+			.midleft-line{
+				left: 103px;
+			}
+			.midright-line{
+				left: 328px;
+			}
+			.car{
+				z-index:5;
+				position: absolute;
+				border-radius:25px;
+			}
+			.car img{
+				width: 60px;
+			}
+			.npc{
+				position: absolute;
+			}
+			.npc img{
+				width: 120px;
+			}
+			#ll, #lm{
+				transform: rotate(90deg);
+			}
+			#rm, #rr{
+				transform: rotate(270deg);
+			}
+		</style>
+		<script>
+			addEventListener("keydown", car_move);
+			var speed1 = Math.trunc(Math.random()*10), 
+				speed2 = Math.trunc(Math.random()*10), 
+				speed3 = Math.trunc(Math.random()*25), 
+				speed4 = Math.trunc(Math.random()*25),
+				shc = 1, mrl, mll, shcet, n1, n2, n3, t;
+			function car_move(event){
+				if ((event.keyCode == 37) && (parseInt(document.getElementById("car").style.left) < 355) && (parseInt(document.getElementById("car").style.left) > 245)){
+					t1 = setInterval(function(){ if (parseInt(document.getElementById("car").style.left) > 245){
+						document.getElementById("car").style.left = (parseInt(document.getElementById("car").style.left) - 5) + "px";
+						document.getElementById("car").style.transform = "rotate(345deg)";
+					}
+					else {document.getElementById("car").style.transform = "rotate(0deg)";clearInterval(t1);}
+					}, 5);
+				}
+				if ((event.keyCode == 37) && (parseInt(document.getElementById("car").style.left) < 250) && (parseInt(document.getElementById("car").style.left) > 130)){
+					t2 = setInterval(function(){ if (parseInt(document.getElementById("car").style.left) > 130){
+						document.getElementById("car").style.left = (parseInt(document.getElementById("car").style.left) - 5) + "px";
+						document.getElementById("car").style.transform = "rotate(345deg)";
+					}
+					else {document.getElementById("car").style.transform = "rotate(0deg)";clearInterval(t2);}
+					}, 5);
+				}
+				if ((event.keyCode == 37) && (parseInt(document.getElementById("car").style.left) < 135) && (parseInt(document.getElementById("car").style.left) > 25)){
+					t3 = setInterval(function(){ if (parseInt(document.getElementById("car").style.left) > 25){
+						document.getElementById("car").style.left = (parseInt(document.getElementById("car").style.left) - 5) + "px";
+						document.getElementById("car").style.transform = "rotate(345deg)";
+					}
+					else {document.getElementById("car").style.transform = "rotate(0deg)";clearInterval(t3);}
+					}, 5);
+				}
+				//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				if ((event.keyCode == 39) && (parseInt(document.getElementById("car").style.left) < 350) && (parseInt(document.getElementById("car").style.left) > 240)){
+					t4 = setInterval(function(){ if (parseInt(document.getElementById("car").style.left) < 350){
+						document.getElementById("car").style.left = (parseInt(document.getElementById("car").style.left) + 5) + "px";
+						document.getElementById("car").style.transform = "rotate(15deg)";
+					}
+					else {document.getElementById("car").style.transform = "rotate(0deg)";clearInterval(t4);}
+					}, 5);
+				}
+				if ((event.keyCode == 39) && (parseInt(document.getElementById("car").style.left) < 245) && (parseInt(document.getElementById("car").style.left) > 125)){
+					t5 = setInterval(function(){ if (parseInt(document.getElementById("car").style.left) < 245){
+						document.getElementById("car").style.left = (parseInt(document.getElementById("car").style.left) + 5) + "px";
+						document.getElementById("car").style.transform = "rotate(15deg)";
+					}
+					else {document.getElementById("car").style.transform = "rotate(0deg)";clearInterval(t5);}
+					}, 5);
+				}
+				if ((event.keyCode == 39) && (parseInt(document.getElementById("car").style.left) < 130) && (parseInt(document.getElementById("car").style.left) > 20)){
+					t6 = setInterval(function(){ if (parseInt(document.getElementById("car").style.left) < 130){
+						document.getElementById("car").style.left = (parseInt(document.getElementById("car").style.left) + 5) + "px";
+						document.getElementById("car").style.transform = "rotate(15deg)";
+					}
+					else {document.getElementById("car").style.transform = "rotate(0deg)";clearInterval(t6);}
+					}, 5);
+				}
+				//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				if ((event.keyCode == 38) && (parseInt(document.getElementById("car").style.top) < 245) && (parseInt(document.getElementById("car").style.top) > 60)){
+					t7 = setInterval(function(){ if (parseInt(document.getElementById("car").style.top) > 60){
+						document.getElementById("car").style.top = (parseInt(document.getElementById("car").style.top) - 5) + "px";
+						document.getElementById("car").style.bottom = (parseInt(document.getElementById("car").style.bottom) + 5) + "px";
+					}
+					else {clearInterval(t7);}
+					}, 5);
+				}
+				if ((event.keyCode == 38) && (parseInt(document.getElementById("car").style.top) < 425) && (parseInt(document.getElementById("car").style.top) > 240)){
+					t8 = setInterval(function(){ if (parseInt(document.getElementById("car").style.top) > 240){
+						document.getElementById("car").style.top = (parseInt(document.getElementById("car").style.top) - 5) + "px";
+						document.getElementById("car").style.bottom = (parseInt(document.getElementById("car").style.bottom) + 5) + "px";
+					}
+					else {clearInterval(t8);}
+					}, 5);
+				}
+				if ((event.keyCode == 40) && (parseInt(document.getElementById("car").style.top) < 420) && (parseInt(document.getElementById("car").style.top) > 235)){
+					t9 = setInterval(function(){ if (parseInt(document.getElementById("car").style.top) < 420){
+						document.getElementById("car").style.top = (parseInt(document.getElementById("car").style.top) + 5) + "px";
+						document.getElementById("car").style.bottom = (parseInt(document.getElementById("car").style.bottom) - 5) + "px";
+					}
+					else {clearInterval(t9);}
+					}, 5);
+				}
+				if ((event.keyCode == 40) && (parseInt(document.getElementById("car").style.top) < 240) && (parseInt(document.getElementById("car").style.top) > 55)){
+					t0 = setInterval(function(){ if (parseInt(document.getElementById("car").style.top) < 240){
+						document.getElementById("car").style.top = (parseInt(document.getElementById("car").style.top) + 5) + "px";
+						document.getElementById("car").style.bottom = (parseInt(document.getElementById("car").style.bottom) - 5) + "px";
+					}
+					else {clearInterval(t0);}
+					}, 5);
+				}
+			}
+			function npc_move(){
+				while (speed1 == speed2){speed2 = Math.trunc(Math.random()*10);};
+				while (speed3 == speed4){speed4 = Math.trunc(Math.random()*5);};
+				mrl = setInterval(function(){ if (parseInt(document.getElementById("mrl").style.top) < 1){
+						document.getElementById("mrl").style.top = (parseInt(document.getElementById("mrl").style.top) + 1) + "px";
+					}
+					else {
+						document.getElementById("mrl").style.top = "-6px";
+					}}, 10);
+				mll = setInterval(function(){ if (parseInt(document.getElementById("mll").style.top) < 1){
+						document.getElementById("mll").style.top = (parseInt(document.getElementById("mll").style.top) + 1) + "px";
+					}
+					else {
+						document.getElementById("mll").style.top = "-6px";
+					}}, 10);
+				shcet = setInterval(function(){
+					
+					document.getElementById("shcet").innerHTML = shc;
+					shc++;
+					}, 1000);
+				n1 = setTimeout(function n1t(){ if (parseInt(document.getElementById("ll").style.top) < 625){
+						document.getElementById("ll").style.top = (parseInt(document.getElementById("ll").style.top) + 1) + "px";
+						if (((parseInt(document.getElementById("ll").style.top) >= (parseInt(document.getElementById("car").style.top)-80)) && 
+							((parseInt(document.getElementById("ll").style.top) - parseInt(document.getElementById("car").style.top)) <= 160)) && 
+							(parseInt(document.getElementById("car").style.left) == 25)){
+								document.getElementById("llem").style.display = "block" ;
+								document.getElementById("carem").style.display = "block" ;
+								clearTimeout(n1);
+								clearInterval(mrl);
+								clearInterval(mll);
+								clearInterval(shcet);
+								removeEventListener("keydown", car_move);
+							} else n1 = setTimeout(n1t, speed1);
+					}
+					else {
+						document.getElementById("ll").style.top = "-150px";
+						document.getElementById("llpic").src=""+(Math.trunc(Math.random()*10))+".svg";
+						while (speed1 == speed2){speed1 = Math.trunc(Math.random()*10);};
+						n1 = setTimeout(n1t, speed1);
+					}
+					}, speed1);
+					n2 = setTimeout(function n2t(){ if (parseInt(document.getElementById("lm").style.top) < 625){
+						document.getElementById("lm").style.top = (parseInt(document.getElementById("lm").style.top) + 1) + "px";
+						if (((parseInt(document.getElementById("lm").style.top) >= (parseInt(document.getElementById("car").style.top)-80)) && 
+							((parseInt(document.getElementById("lm").style.top) - parseInt(document.getElementById("car").style.top)) <= 160)) && 
+							(parseInt(document.getElementById("car").style.left) == 130)){
+								document.getElementById("lmem").style.display = "block" ;
+								document.getElementById("carem").style.display = "block" ;
+								clearTimeout(n2);
+								clearInterval(mrl);
+								clearInterval(mll);
+								clearInterval(shcet);
+								removeEventListener("keydown", car_move);
+							} else n2 = setTimeout(n2t, speed2);
+					}
+					else {
+						document.getElementById("lm").style.top = "-150px";
+						document.getElementById("lmpic").src=""+(Math.trunc(Math.random()*10))+".svg";
+						while (speed1 == speed2){speed2 = Math.trunc(Math.random()*10);};
+						n2 = setTimeout(n2t, speed2);
+					}
+					}, speed2);
+					n3 = setTimeout(function n3t(){ if (parseInt(document.getElementById("rm").style.bottom) < 625){
+						document.getElementById("rm").style.bottom = (parseInt(document.getElementById("rm").style.bottom) + 2) + "px";
+						if (((parseInt(document.getElementById("rm").style.bottom) >= (parseInt(document.getElementById("car").style.bottom)-80)) && 
+							((parseInt(document.getElementById("rm").style.bottom) - parseInt(document.getElementById("car").style.bottom)) <= 160)) && 
+							(parseInt(document.getElementById("car").style.left) == 245)){
+								document.getElementById("rmem").style.display = "block" ;
+								document.getElementById("carem").style.display = "block" ;
+								clearTimeout(n3);
+								clearInterval(mrl);
+								clearInterval(mll);
+								clearInterval(shcet);
+								removeEventListener("keydown", car_move);
+							} else n3 = setTimeout(n3t, speed3);
+					}
+					else {
+						document.getElementById("rm").style.bottom = "-150px";
+						document.getElementById("rmpic").src=""+(Math.trunc(Math.random()*10))+".svg";
+						while (speed3 == speed4){speed3 = Math.trunc(Math.random()*25);};
+						n3 = setTimeout(n3t, speed3);
+					}
+					}, speed3);
+					n4 = setTimeout(function n4t(){ if (parseInt(document.getElementById("rr").style.bottom) < 625){
+						document.getElementById("rr").style.bottom = (parseInt(document.getElementById("rr").style.bottom) + 1) + "px";
+						if (((parseInt(document.getElementById("rr").style.bottom) >= (parseInt(document.getElementById("car").style.bottom)-80)) && 
+							((parseInt(document.getElementById("rr").style.bottom) - parseInt(document.getElementById("car").style.bottom)) <= 160)) && 
+							(parseInt(document.getElementById("car").style.left) == 350)){
+								document.getElementById("rrem").style.display = "block" ;
+								document.getElementById("carem").style.display = "block" ;
+								clearTimeout(n4);
+								clearInterval(mrl);
+								clearInterval(mll);
+								clearInterval(shcet);
+								removeEventListener("keydown", car_move);
+							} else n4 = setTimeout(n4t, speed4);
+					}
+					else {
+						document.getElementById("rr").style.bottom = "-150px";
+						document.getElementById("rrpic").src=""+(Math.trunc(Math.random()*10))+".svg";
+						while (speed3 == speed4){speed4 = Math.trunc(Math.random()*25);};
+						n4 = setTimeout(n4t, speed4);
+					}
+					}, speed4);
+			}
+		</script>
+	</head>
+	<body onload="npc_move()">
+		<div class="road">
+			<div class="left-line"></div>
+			<div class="right-line"></div>
+			<div class="midright-line" id="mrl"></div>
+			<div class="midleft-line" id="mll"></div>
+			<div class="double-solid-line"></div>
+			<div class="npc" id="ll" style="top: -150px; left: -5px">
+				<img id="llem" src="emerg.png" style="position: absolute;left:25px;display: none;transform: rotate(90deg);width:50%;">
+				<img id="llpic" src="1.svg">
+			</div>
+			<div class="npc" id="lm" style="top: -150px; left: 100px">
+				<img id="lmem" src="emerg.png" style="position: absolute;left:25px;display: none;transform: rotate(90deg);width:50%;">
+				<img id="lmpic" src="6.svg">
+			</div>
+			<div class="npc" id="rm" style="bottom: -150px; left: 215px">
+				<img id="rmem" src="emerg.png" style="position: absolute;left:25px;display: none;transform: rotate(90deg);width:50%;">
+				<img id="rmpic" src="4.svg">
+			</div>
+			<div class="npc" id="rr" style="bottom: -150px; left: 320px">
+				<img id="rrem" src="emerg.png" style="position: absolute;left:25px;display: none;transform: rotate(90deg);width:50%;">
+				<img id="rrpic" src="9.svg">
+			</div>
+			<div class="car" id="car" style="left: 350px; bottom: 230px;top: 240px;">
+				<img id="carem" src="emerg.png" style="position: absolute;top:35px;display: none;">
+				<img src="car.svg">
+			</div>
+		</div>
+		<h3 style="position: absolute;color: white;display:inline;margin-left:250px;padding: 3px;">Время жизни: <p id="shcet">0</p> сек <br>
+		<button onclick="document.location.reload(true);" style="color: white; font-size: 100%; position: absolute;background: darkgray;border-radius: 25px;padding: 5px;
+						 border: 1px solid white; width: 124px; margin-left: -62px;margin-top: 10px;">Новая игра</button></h3>
+		<p style="color: white;margin-top: 600px; position: absolute; display:inline;margin-left:-170px;">Стрелки Влево-Вправо - смена полосы движения <br>
+			Стрелки Вверх-вниз - движение вперёд-назад</p>
+	</body>
+</html>
